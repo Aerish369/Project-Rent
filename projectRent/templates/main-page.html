@@ -1,1 +1,26 @@
 <h1>Renting Made Easy<h1>
+
+<hr>
+
+{% if request.user %}
+<p>Logged in as: {{request.user}}</p>
+{% endif %}
+
+<br>
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% if request.user.is_authenticated %}
+<a href="{% url 'logout-page' %}">
+<input type="submit" value="logout"/> </a>
+{% endif %}
+
+{% block content %}
+
+{% endblock content %}
